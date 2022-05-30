@@ -1,6 +1,6 @@
 const db = require ('../dbConfig')
 
-class Post {
+class Article {
     constructor(data){
         this.id = data.id
         this.title = data.title
@@ -12,14 +12,14 @@ class Post {
     static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                let postData = await db.query(`SELECT * FROM posts WHERE id = $1;`, [ id ]);
-                let post = new Post(postData.rows[0])
-                resolve(post);
+                let articleData = await db.query(`SELECT * FROM articles WHERE id = $1;`, [ id ]);
+                let article = new Article(articleData.rows[0])
+                resolve(article);
             } catch (err) {
-                reject('Post not found');
+                reject('Article not found');
             }
         })
     }
 
 
-}
+};
