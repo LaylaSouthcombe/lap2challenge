@@ -12,7 +12,7 @@ class Article {
     static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                let articleData = await db.query(`SELECT * FROM articles WHERE id = $1;`, [ id ]);
+                let articleData = await db.query(`SELECT * FROM articles WHERE url_end = $1;`, [ url_end ]);
                 let article = new Article(articleData.rows[0])
                 resolve(article);
             } catch (err) {
@@ -20,6 +20,6 @@ class Article {
             }
         })
     }
-
-
 };
+
+module.exports = Article;
