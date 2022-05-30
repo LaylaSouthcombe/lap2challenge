@@ -23,7 +23,7 @@ server.get('/:url_end', async (req, res) => {
 // Create article route
 server.post('/', async (req, res) => {
     try {
-        const article = await Article.create(req.body.title, req.body.name, req.body.body, req.body.url_end )
+        const article = await Article.create(req.body.title, req.body.name, req.body.body, req.body.url_end)
         res.json(article)
     } catch(err) {
         res.status(404).json({err})
