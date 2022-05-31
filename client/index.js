@@ -6,6 +6,7 @@ const form = document.getElementById('form')
 
 const newPage = document.getElementById('newPage')
 
+
 form.addEventListener('submit', postArticle);
 
 async function postArticle(e){
@@ -61,7 +62,7 @@ newPage.addEventListener('click', goNewPage)
 
 function goNewPage(e) {
     e.preventDefault()
-    const newUrl = "https://google.co.u/"
+    const newUrl = "https://google.co.uk/"
     window.location.replace(newUrl);
 }
 
