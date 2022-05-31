@@ -6,15 +6,16 @@ const form = document.getElementById('form')
 
 form.addEventListener('submit', postArticle);
 
-function postArticle(e){
+async function postArticle(e){
     e.preventDefault()
     const month = new Date()
-    const monthNum = month.getMonth()
+    const monthNum = month.getMonth() + 1
     const day = new Date()
     const dayNum = day.getDate()
 
-    const urlEnd = `${e.target.titleField.value} ${monthNum} ${dayNum}`
+    const urlEnd = `${e.target.titleField.value}-${monthNum}-${dayNum}`
     console.log(urlEnd)
+    try {
     const articleData = {
         title: e.target.titleField.value,
         name: e.target.nameField.value,
@@ -26,11 +27,18 @@ function postArticle(e){
         body: JSON.stringify(articleData),
         headers: { "Content-Type": "application/json" }
     }
-    fetch('http://localhost:3000/', options)
-        .then(r => r.json())
-        .then(appendPost)
-        .then(() => e.target.reset())
-        .catch(console.warn)
+    const response = await fetch('http://localhost:3000/', options)
+    const data = await response.json()
+    appendPost(data)
+} catch (err) {
+    console.warn(err)
+}
+    
+    // fetch('http://localhost:3000/', options)
+    //     .then(r => r.json())
+    //     .then(appendPost)
+    //     .then(() => e.target.reset())
+    //     .catch(console.warn)
 }
 
 function appendPost(postData){
