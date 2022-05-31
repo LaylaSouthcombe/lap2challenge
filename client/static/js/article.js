@@ -17,8 +17,11 @@ function getArticle(){
         .catch(console.warn)
 };
 
-// function appendArticle() {
+function appendArticle(data) {
+    newTitle.textCont = data.title
+    newName.textCont = data.name
+    newBody.textCont = data.body
+}
 
-// }
 
 console.log(urlEnd)

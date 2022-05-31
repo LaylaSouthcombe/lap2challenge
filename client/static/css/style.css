@@ -64,9 +64,9 @@ form {
     outline: none;
  }
 
- #postBtn {
+ /* #postBtn {
      display: none;
- }
+ } */
 
  #newPage {
      margin: 0 auto;
