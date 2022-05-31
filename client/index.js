@@ -4,24 +4,31 @@ const bodyField = document.getElementById('bodyField')
 const postBtn = document.getElementById('postBtn')
 const form = document.getElementById('form')
 
-form.addEventListener('submit', postArticle);
-
-async function postArticle(e){
-    e.preventDefault()
-    const month = new Date()
+const newPage = document.getElementById('newPage')
+const month = new Date()
     const monthNum = month.getMonth() + 1
     const day = new Date()
     const dayNum = day.getDate()
 
-    const urlEnd = `${e.target.titleField.value}-${monthNum}-${dayNum}`
-    console.log(urlEnd)
+    let urlEnd = ''
+    
+form.addEventListener('submit', postArticle);
+
+async function postArticle(e){
+    e.preventDefault()
+    
+ urlEnd = `${titleField.value}-${monthNum}-${dayNum}`
+console.log(urlEnd)
+    
+    
     try {
     const articleData = {
         title: e.target.titleField.value,
         name: e.target.nameField.value,
         body: e.target.bodyField.value,
-        url_end: e.target.titleField.value
+        url_end: urlEnd
     }
+    console.log(articleData)
     const options = {
         method: 'POST',
         body: JSON.stringify(articleData),
@@ -54,3 +61,14 @@ function appendPost(postData){
     newUl.appendChild(newBody)
     form.append(newUl);
 };
+
+newPage.addEventListener('click', goNewPage)
+
+function goNewPage(e) {
+    e.preventDefault()
+    const newUrl = "./article.html"
+    window.location.replace(newUrl);
+}
+
+// export default urlEnd;
+
