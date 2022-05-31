@@ -10,13 +10,12 @@
 </head>
 <body>
     <form action="" id="form">
-        <label class="titleField" for="titleField">Title</label>
-        <input type="text" name="titleField" id="titleField" placeholder="Title" autocomplete="none">
+        <textarea name="titleField" id="titleField" placeholder="Title" autocomplete="none" rows="1" minlength="4" maxlength="30" required></textarea>
         <label class="nameField" for="nameField">Name</label>
-        <input type="text" name="nameField" id="nameField" placeholder="Author" autocomplete="none">
+        <input type="text" name="nameField" id="nameField" placeholder="Author" autocomplete="none" minlength="4" maxlength="30" required>
         <label class="bodyField" for="bodyField">Body</label>
-        <textarea name="bodyField" id="bodyField" placeholder="Type Your Article..." autocomplete="none"></textarea>
-        <input type="submit" value="Post" id="postBtn">
+        <textarea name="bodyField" id="bodyField" placeholder="Type your article..." autocomplete="none" minlength="4" maxlength="500" required></textarea>
+        <input type="submit" value="Publish" id="postBtn">
     </form>
     <!-- <form id="formBtn">
         <input type="submit" value="Post" id="newPage">

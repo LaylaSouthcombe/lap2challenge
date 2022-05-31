@@ -3,7 +3,7 @@ const nameField = document.getElementById('nameField')
 const bodyField = document.getElementById('bodyField')
 const postBtn = document.getElementById('postBtn')
 const form = document.getElementById('form')
-const textarea = document.getElementById("bodyField")
+// const textarea = document.getElementById("bodyField")
 const postArea = document.getElementById("postArea")
 
 const newPage = document.getElementById('newPage')
@@ -16,7 +16,8 @@ form.addEventListener('submit', postArticle);
 
 async function postArticle(e){
     e.preventDefault()
-    const urlEnd = `${titleField.value}-${monthNum}-${dayNum}`
+    const unformattedUrlEnd = `${titleField.value}-${monthNum}-${dayNum}`
+    const urlEnd = unformattedUrlEnd.replaceAll(' ', '-');
     console.log(urlEnd)
     try {
     const articleData = {
@@ -43,17 +44,19 @@ async function postArticle(e){
 
 function appendPost(postData){
     console.log(postData)
-    const newUl = document.createElement('ul');
-    const newTitle = document.createElement('ul');
+    // const newUl = document.createElement('ul');
+    const newTitle = document.createElement('h2');
     newTitle.textContent = postData.title
-    const newName = document.createElement('ul');
+    newTitle.id = 'newTitle'
+    const newName = document.createElement('h4');
     newName.textContent = postData.name
-    const newBody = document.createElement('ul');
+    newName.id = 'newName'
+    const newBody = document.createElement('p');
     newBody.textContent = postData.body
-    newUl.appendChild(newTitle)
-    newUl.appendChild(newName)
-    newUl.appendChild(newBody)
-    postArea.appendChild(newUl);
+    newBody.id = 'newBody'
+    postArea.appendChild(newTitle);
+    postArea.appendChild(newName);
+    postArea.appendChild(newBody);
 };
 
 async function loadArticle(e) {
@@ -69,7 +72,12 @@ async function loadArticle(e) {
 window.addEventListener("hashchange", loadArticle);
 
 //Resizes text area to fit content
-textarea.addEventListener("input", function (e) {
+bodyField.addEventListener("input", function (e) {
   this.style.height = "auto";
   this.style.height = this.scrollHeight + "px";
 });
+
+titleField.addEventListener("input", function (e) {
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
+  });
