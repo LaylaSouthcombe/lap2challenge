@@ -10,16 +10,16 @@
 </head>
 <body>
     <form action="" id="form">
-        <label for="titleField">Title</label>
-        <input type="text" name="titleField" id="titleField">
+        <label class="titleField" for="titleField">Title</label>
+        <input type="text" name="titleField" id="titleField" placeholder="Title" autocomplete="none">
         <label class="nameField" for="nameField">Name</label>
-        <input type="text" name="nameField" id="nameField">
+        <input type="text" name="nameField" id="nameField" placeholder="Name" autocomplete="none">
         <label class="bodyField" for="bodyField">Body</label>
-        <textarea name="bodyField" id="bodyField" cols="30" rows="10"></textarea>
+        <textarea name="bodyField" id="bodyField" placeholder="Type your article..." autocomplete="none"></textarea>
         <input type="submit" value="Post" id="postBtn">
     </form>
-    <form action="">
-        <input type="submit" value="New page" id="newPage">
+    <form id="formBtn">
+        <input type="submit" value="Post" id="newPage">
     </form>
 </body>
 </html>
