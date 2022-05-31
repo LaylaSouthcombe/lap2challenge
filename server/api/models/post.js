@@ -9,7 +9,19 @@ class Article {
         this.url_end = data.url_end
     }
 
-    static findById(id) {
+    // static findById(id) {
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             let articleData = await db.query(`SELECT * FROM articles WHERE id = $1;`, [ id ]);
+    //             let article = new Article(articleData.rows[0])
+    //             resolve(article);
+    //         } catch (err) {
+    //             reject('Article not found');
+    //         }
+    //     })
+    // }
+
+    static findByUrlEnd(url_end) {
         return new Promise (async (resolve, reject) => {
             try {
                 let articleData = await db.query(`SELECT * FROM articles WHERE url_end = $1;`, [ url_end ]);
