@@ -70,5 +70,5 @@ function goNewPage(e) {
     window.location.replace(newUrl);
 }
 
-export default urlEnd;
+// export default urlEnd;
 

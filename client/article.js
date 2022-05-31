@@ -1,4 +1,4 @@
-import urlEnd from './index'
+// import urlEnd from './index'
 
 const newTitle = document.getElementById('newTitle')
 const newName = document.getElementById('newName')
