@@ -71,6 +71,7 @@ function goNewPage(e) {
     window.location.replace(newUrl);
 }
 
+//Resizes text area to fit content
 textarea.addEventListener("input", function (e) {
   this.style.height = "auto";
   this.style.height = this.scrollHeight + "px";
