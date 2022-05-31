@@ -3,25 +3,22 @@ const nameField = document.getElementById('nameField')
 const bodyField = document.getElementById('bodyField')
 const postBtn = document.getElementById('postBtn')
 const form = document.getElementById('form')
-const textarea = document.getElementById("bodyField");
+// const textarea = document.getElementById("bodyField")
+const postArea = document.getElementById("postArea")
 
 const newPage = document.getElementById('newPage')
 const month = new Date()
-    const monthNum = month.getMonth() + 1
-    const day = new Date()
-    const dayNum = day.getDate()
-
-    let urlEnd = ''
+const monthNum = month.getMonth() + 1
+const day = new Date()
+const dayNum = day.getDate()
     
 form.addEventListener('submit', postArticle);
 
 async function postArticle(e){
     e.preventDefault()
-    
- urlEnd = `${titleField.value}-${monthNum}-${dayNum}`
-console.log(urlEnd)
-    
-    
+    const unformattedUrlEnd = `${titleField.value}-${monthNum}-${dayNum}`
+    const urlEnd = unformattedUrlEnd.replaceAll(' ', '-');
+    console.log(urlEnd)
     try {
     const articleData = {
         title: e.target.titleField.value,
@@ -37,45 +34,50 @@ console.log(urlEnd)
     }
     const response = await fetch('http://localhost:3000/', options)
     const data = await response.json()
-    appendPost(data)
-} catch (err) {
-    console.warn(err)
-}
-    
-    // fetch('http://localhost:3000/', options)
-    //     .then(r => r.json())
-    //     .then(appendPost)
-    //     .then(() => e.target.reset())
-    //     .catch(console.warn)
+    window.location.hash = `${data.url_end}`;
+    form.style.display = 'none'
+    // appendPost(data)
+    } catch (err) {
+        console.warn(err)
+    }
 }
 
 function appendPost(postData){
-    const newUl = document.createElement('ul');
-    const newTitle = document.createElement('ul');
+    console.log(postData)
+    // const newUl = document.createElement('ul');
+    const newTitle = document.createElement('h2');
     newTitle.textContent = postData.title
-    const newName = document.createElement('ul');
+    newTitle.id = 'newTitle'
+    const newName = document.createElement('h4');
     newName.textContent = postData.name
-    const newBody = document.createElement('ul');
+    newName.id = 'newName'
+    const newBody = document.createElement('p');
     newBody.textContent = postData.body
-    newUl.appendChild(newTitle)
-    newUl.appendChild(newName)
-    newUl.appendChild(newBody)
-    form.append(newUl);
+    newBody.id = 'newBody'
+    postArea.appendChild(newTitle);
+    postArea.appendChild(newName);
+    postArea.appendChild(newBody);
 };
 
-newPage.addEventListener('click', goNewPage)
-
-function goNewPage(e) {
-    e.preventDefault()
-    const newUrl = "./article.html"
-    window.location.replace(newUrl);
+async function loadArticle(e) {
+    e.preventDefault();
+    const newUrlEnd = window.location.hash.substring(1);
+    console.log(newUrlEnd)
+    const response = await fetch(`http://localhost:3000/${newUrlEnd}`);
+    const postData = await response.json();
+    form.style.display = 'none'
+    appendPost(postData);
 }
 
+window.addEventListener("hashchange", loadArticle);
+
 //Resizes text area to fit content
-textarea.addEventListener("input", function (e) {
+bodyField.addEventListener("input", function (e) {
   this.style.height = "auto";
   this.style.height = this.scrollHeight + "px";
 });
 
-// export default urlEnd;
-
+titleField.addEventListener("input", function (e) {
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
+  });

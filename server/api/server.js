@@ -13,7 +13,7 @@ server.get('/', (req, res) => res.send('Hello, world!'));
 // articles show route
 server.get('/:url_end', async (req, res) => {
     try {
-        const article = await Article.findByUrlEnd(parseInt(req.params.url_end))
+        const article = await Article.findByUrlEnd(req.params.url_end)
         res.json(article)
     } catch(err) {
         res.status(404).json({err})
