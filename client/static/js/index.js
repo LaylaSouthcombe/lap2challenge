@@ -3,6 +3,7 @@ const nameField = document.getElementById('nameField')
 const bodyField = document.getElementById('bodyField')
 const postBtn = document.getElementById('postBtn')
 const form = document.getElementById('form')
+const textarea = document.getElementById("bodyField");
 
 const newPage = document.getElementById('newPage')
 const month = new Date()
@@ -69,6 +70,12 @@ function goNewPage(e) {
     const newUrl = "./article.html"
     window.location.replace(newUrl);
 }
+
+//Resizes text area to fit content
+textarea.addEventListener("input", function (e) {
+  this.style.height = "auto";
+  this.style.height = this.scrollHeight + "px";
+});
 
 // export default urlEnd;
 
