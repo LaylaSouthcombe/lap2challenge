@@ -4,6 +4,8 @@ const bodyField = document.getElementById('bodyField')
 const postBtn = document.getElementById('postBtn')
 const form = document.getElementById('form')
 
+const newPage = document.getElementById('newPage')
+
 form.addEventListener('submit', postArticle);
 
 async function postArticle(e){
@@ -54,3 +56,12 @@ function appendPost(postData){
     newUl.appendChild(newBody)
     form.append(newUl);
 };
+
+newPage.addEventListener('click', goNewPage)
+
+function goNewPage(e) {
+    e.preventDefault()
+    const newUrl = "https://google.co.u/"
+    window.location.replace(newUrl);
+}
+
